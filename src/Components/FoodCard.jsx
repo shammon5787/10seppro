@@ -1,8 +1,11 @@
 import React from 'react'
 import img from '../Food/5.avif'
 import { MdOutlineStar } from "react-icons/md";
+import { useDispatch } from 'react-redux';
+import { addCard } from '../Store/CardSlice';
 
 const FoodCard = ({id, name, image, price, desc, rating}) => {
+    const dispatch = useDispatch();
     return (
         <div className='bg-gradient-to-r from-gray-600 to-blue-800 w-full lg:w-[23vw] rounded-md '>
             <div className='flex flex-col p-3 items-center'>
@@ -19,7 +22,7 @@ const FoodCard = ({id, name, image, price, desc, rating}) => {
                         <MdOutlineStar className='text-2xl text-yellow-400' />
                         <h1>{rating}</h1>
                     </span>
-                    <button className='bg-green-900 px-2 py-0.5 rounded-md hover:bg-blue-950 transition-all duration-500 font-semibold '>Add To Card</button>
+                    <button onClick={()=>dispatch(addCard({id, name, price, image, qty : 1}))} className='bg-green-900 px-2 py-0.5 rounded-md hover:bg-blue-950 transition-all duration-500 font-semibold '>Add To Card</button>
                 </div>
             </div>
         </div>
